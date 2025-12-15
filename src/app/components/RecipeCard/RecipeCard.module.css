@@ -1,0 +1,139 @@
+.recipeCard {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #f0f0f0;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.timeBadge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.85rem;
+  background-color: #FFD15B;
+}
+
+.content {
+  padding: 32px 25px 61px 25px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.title {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0.3px;
+  margin: 0;
+}
+
+.descriptionContainer {
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #7A7A7A;
+  display: flex;
+  flex-direction: column;
+}
+
+.recipeTitle {
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #7A7A7A;
+  margin-bottom: 15px;
+}
+
+.recipeDescription {
+  color: #1B1B1B;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  word-spacing: 0.5px;
+  line-height: 1.2;
+  text-align: start;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ingredientsTitle {
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #7A7A7A;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.ingredientsList {
+  font-family: 'Manrope', sans-serif;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.ingredientItem {
+  flex: 0 0 calc(50% - 10px);
+  box-sizing: border-box;
+}
+
+.ingredientName {
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #1B1B1B;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.ingredientQuantity {
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #7A7A7A;
+  white-space: nowrap;
+}

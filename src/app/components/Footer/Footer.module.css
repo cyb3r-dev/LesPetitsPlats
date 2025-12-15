@@ -1,0 +1,12 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    height: 138px;
+}
+
+.footer p {
+    font-family: 'Manrope', sans-serif;
+    color: white;
+}
