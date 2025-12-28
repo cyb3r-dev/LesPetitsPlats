@@ -1,21 +1,19 @@
 import React from 'react';
-import Header from './components/Header/Header';
-import FilterSection from './components/FilterSection/FiltersSection';
-import RecipeGrid from './components/RecipeGrid/RecipeGrid';
+import Header from './components/Header/LargeHeader';
 import Footer from './components/Footer/Footer';
-import styles from './page.module.css';
+import FilterSection from './components/FiltersSection/FiltersSection';
+import RecipeGrid from './components/RecipeGrid/RecipeGrid';
+import style from './page.module.css';
 
-
-function App() {
+export default function App() {
   return (
-    <div className="app">
+    <div className="main-container">
       <Header />
-      <main className={styles.main}>
+      <main className={style.main}>
         <FilterSection />
         <RecipeGrid />
       </main>
+      <Footer />
     </div>
   );
 }
-
-export default App;

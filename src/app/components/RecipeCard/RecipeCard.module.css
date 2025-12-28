@@ -1,3 +1,8 @@
+.recipeCardLink {
+  text-decoration: none;
+  color: inherit;
+}
+
 .recipeCard {
   background: white;
   border-radius: 16px;

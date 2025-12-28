@@ -1,6 +1,12 @@
 .header {
   text-align: center;
   position: relative;
+  height: 667px;
+}
+
+.bannerImage {
+  width: 100%;
+  height: 667px;
 }
 
 .logo {

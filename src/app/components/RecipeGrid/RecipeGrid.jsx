@@ -2,16 +2,15 @@
 
 import React from 'react';
 import RecipeCard from '../RecipeCard/RecipeCard';
-import styles from './RecipeGrid.module.css';
+import style from './RecipeGrid.module.css';
+import recipesData from 'public/data/recipes.json';
 
-import recipesData from '../../../../public/data/recipes.json';
-
-function RecipeGrid() {
+export default function RecipeGrid() {
   return (
-    <div className={styles.container}>
-      <div className={styles.grid}>
+    <div className={style.container}>
+      <div className={style.grid}>
         {recipesData.map((recipe) => (
-          <div key={recipe.id} className={styles.gridItem}>
+          <div key={recipe.id} className={style.gridItem}>
             <RecipeCard recipe={recipe} />
           </div>
         ))}
@@ -19,5 +18,3 @@ function RecipeGrid() {
     </div>
   );
 }
-
-export default RecipeGrid;

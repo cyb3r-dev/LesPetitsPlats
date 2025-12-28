@@ -1,12 +1,10 @@
 import React from 'react';
-import styles from './Footer.module.css';
+import style from './Footer.module.css';
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <footer className={styles.footer}>
+    <footer className={style.footer}>
       <p>Copyright ©  2025 - Les Petits Plats</p>
       </footer>
-  );  
-};
-
-export default Footer;
+  );
+}
