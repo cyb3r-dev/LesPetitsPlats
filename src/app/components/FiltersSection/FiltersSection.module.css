@@ -1,9 +1,15 @@
 .filtersSection {
+  margin: 2rem 0;
+  position: relative;
+  align-items: center;
+  padding: 60px 0;
+}
+
+.filtersAndCounter {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 60px 0px;
+  max-width: 1400px;
 }
 
 .filtersContainer {
@@ -13,11 +19,12 @@
 
 .filter {
   position: relative;
+  min-width: 200px;
 }
 
 .filterBtn {
-  background-color: white;
-  color: black;
+  background-color: #fff;
+  color: #000;
   border: none;
   cursor: pointer;
   border-radius: 10px;
@@ -29,24 +36,127 @@
   font-size: 16px;
 }
 
-.dropdownIcon {
-  margin-left: 0.5rem;
+.icon {
+  transition: transform .3s ease;
+  width: 13px;
+  height: auto;
+}
+
+.icon.rotate {
+  transform: rotate(180deg);
 }
 
 .dropdownContent {
-  display: none;
   position: absolute;
-  background-color: white;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  background-color: #fff;
+  z-index: 1000;
+  max-height: 260px;
+  width: 195px;
+  overflow-y: auto;
+}
+
+.dropdownSearchContainer {
+  position: relative;
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.dropdownSearchIcon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7a7a7a;
+}
+
+.dropdownSearchInput {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+}
+
+.dropdownSearchInput:focus {
+  outline: 0;
+}
+
+.dropdownItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-family: Manrope, sans-serif;
+  font-size: .9rem;
+  color: #1b1b1b;
+  transition: all .2s ease;
+}
+
+.dropdownItem:hover {
+  background-color: #f5f5f5;
+}
+
+.dropdownItem.selected {
+  background-color: #ffd15b;
+  font-weight: 600;
+}
+
+.itemRemoveIcon {
+  color: #000;
+  font-size: .8rem;
+}
+
+.noResults {
+  padding: 16px;
+  text-align: center;
+  color: #7a7a7a;
+  font-style: italic;
 }
 
 .recipeCounter {
-
-  font-family: 'Anton', sans-serif;
-  font-size: 18px;
+  font-family: Anton, sans-serif;
+  font-size: 1.3rem;
+  color: #1b1b1b;
+  margin-left: 2rem;
 }
 
-.icon {
-  width: 13px;
+.selectedFiltersSection {
+  margin-top: 40px;
+}
+
+.selectedFiltersContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 65px;
+  align-items: center;
+}
+
+.selectedFilterTag {
+  display: flex;
+  width: 195px;
+  height: 53px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffd15b;
+  border-radius: 10px;
+  padding: 8px 15px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.selectedFilterRemoveBtn {
+  background: 0 0;
+  border: none;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+
+.clearAllFiltersBtn {
+  background: 0 0;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #666;
+  font-size: 16px;
+  padding: 5px 10px;
 }

@@ -11,7 +11,7 @@
 .bannerImage {
   width: 100%;
   height: auto;
-  filter: brightness(0.4);
+  filter: brightness(.4);
 }
 
 .logo {
@@ -35,15 +35,15 @@
 
 .title {
   font-size: 50px;
-  font-family: 'Anton', sans-serif;
+  font-family: Anton, sans-serif;
   font-weight: 400;
-  color: #FFD15B;
-  margin-bottom: 0.5rem;
+  color: #ffd15b;
+  margin-bottom: .5rem;
 }
 
 .subtitle {
   font-size: 30px;
-  font-family: 'Anton', sans-serif;
+  font-family: Anton, sans-serif;
   font-weight: 400;
-  color: white;
+  color: #fff;
 }

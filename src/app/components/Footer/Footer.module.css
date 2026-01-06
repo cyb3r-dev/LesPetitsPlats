@@ -2,12 +2,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black;
+    background-color: #000;
     height: 138px;
     width: 1440px;
 }
 
 .footer p {
-    font-family: 'Manrope', sans-serif;
-    color: white;
+    font-family: Manrope, sans-serif;
+    color: #fff;
 }
