@@ -93,11 +93,11 @@ export const useRecipeFilter = () => {
         setFilteredRecipes(results);
     }, [searchTerm, activeFilters, recipeMatchesSearch, applyTagFilters]);
 
-    const handleSearch = useCallback((term) => {
+    const handleSearch = (term) => {
         setSearchTerm(typeof term === 'string' ? term : '');
-    }, []);
+    };
 
-    const handleFilterChange = useCallback((filters) => {
+    const handleFilterChange = (filters) => {
         const deduplicate = (arr) => {
             const seen = new Set();
             return arr.filter(item => {
@@ -111,16 +111,16 @@ export const useRecipeFilter = () => {
             appareils: deduplicate(filters.appareils),
             ustensiles: deduplicate(filters.ustensiles)
         });
-    }, [normalize]);
+    };
 
-    const handleClearSearch = useCallback(() => setSearchTerm(''), []);
+    const handleClearSearch = () => setSearchTerm('');
 
-    const handleClearAllFilters = useCallback(() => {
+    const handleClearAllFilters = () => {
         setSearchTerm('');
         setActiveFilters({ ingredients: [], appareils: [], ustensiles: [] });
-    }, []);
+    };
 
-    const addTag = useCallback((type, value) => {
+    const addTag = (type, value) => {
         const key = normalize(value);
         setActiveFilters(prev => ({
             ...prev,
@@ -128,17 +128,17 @@ export const useRecipeFilter = () => {
                 ? prev[type]
                 : [...prev[type], value.trim()]
         }));
-    }, [normalize]);
+    };
 
-    const removeTag = useCallback((type, value) => {
+    const removeTag = (type, value) => {
         const key = normalize(value);
         setActiveFilters(prev => ({
             ...prev,
             [type]: prev[type].filter(item => normalize(item) !== key)
         }));
-    }, [normalize]);
+    };
 
-    const handleAddTagFromSearch = useCallback((term) => {
+    const handleAddTagFromSearch = (term) => {
         if (term && term.trim().length >= 3) {
             const key = normalize(term.trim());
             setActiveFilters(prev => ({
@@ -149,7 +149,7 @@ export const useRecipeFilter = () => {
             }));
             setSearchTerm('');
         }
-    }, [normalize]);
+    };
 
     return {
         searchTerm,
