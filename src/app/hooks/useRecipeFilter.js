@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import recipesData from 'public/data/recipes.json';
 
 export const useRecipeFilter = () => {
@@ -12,70 +12,37 @@ export const useRecipeFilter = () => {
     });
     const [filteredRecipes, setFilteredRecipes] = useState(recipesData);
 
-    const normalize = useCallback((str) => {
+    const normalize = (str) => {
         return str?.toLowerCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "") || '';
-    }, []);
-
-    const recipeMatchesSearch = useCallback((recipe, term) => {
-        const search = normalize(term);
-
-        return normalize(recipe.name).includes(search) ||
-            normalize(recipe.description).includes(search) ||
-            recipe.ingredients?.some(ing => normalize(ing.ingredient).includes(search));
-    }, [normalize]);
-
-    const applyTagFilters = useCallback((recipes, filters) => {
-        return recipes.filter(recipe => {
-            const hasIngredients = !filters.ingredients.length || filters.ingredients.every(filter =>
-                recipe.ingredients?.some(ing => normalize(ing.ingredient) === normalize(filter))
-            );
-
-            const hasAppareils = !filters.appareils.length || filters.appareils.some(filter =>
-                normalize(recipe.appliance) === normalize(filter)
-            );
-
-            const hasUstensiles = !filters.ustensiles.length || filters.ustensiles.every(filter =>
-                recipe.ustensils?.some(ust => normalize(ust) === normalize(filter))
-            );
-
-            return hasIngredients && hasAppareils && hasUstensiles;
-        });
-    }, [normalize]);
-
-    const availableFilterOptions = useMemo(() => {
-        const ingredientsMap = new Map();
-        const appareilsMap = new Map();
-        const ustensilesMap = new Map();
-
-        filteredRecipes.forEach(recipe => {
-            recipe.ingredients?.forEach(({ ingredient }) => {
-                if (ingredient) {
-                    const key = normalize(ingredient);
-                    if (!ingredientsMap.has(key)) ingredientsMap.set(key, ingredient.trim());
-                }
-            });
-
-            if (recipe.appliance) {
-                const key = normalize(recipe.appliance);
-                if (!appareilsMap.has(key)) appareilsMap.set(key, recipe.appliance.trim());
-            }
-
-            recipe.ustensils?.forEach(ustensile => {
-                if (ustensile) {
-                    const key = normalize(ustensile);
-                    if (!ustensilesMap.has(key)) ustensilesMap.set(key, ustensile.trim());
-                }
-            });
-        });
-
-        return {
-            ingredients: Array.from(ingredientsMap.values()).sort(),
-            appareils: Array.from(appareilsMap.values()).sort(),
-            ustensiles: Array.from(ustensilesMap.values()).sort()
-        };
-    }, [filteredRecipes, normalize]);
+    };
 
     useEffect(() => {
+        const recipeMatchesSearch = (recipe, term) => {
+            const search = normalize(term);
+
+            return normalize(recipe.name).includes(search) ||
+                normalize(recipe.description).includes(search) ||
+                recipe.ingredients?.some(ing => normalize(ing.ingredient).includes(search));
+        };
+
+        const applyTagFilters = (recipes, filters) => {
+            return recipes.filter(recipe => {
+                const hasIngredients = !filters.ingredients.length || filters.ingredients.every(filter =>
+                    recipe.ingredients?.some(ing => normalize(ing.ingredient) === normalize(filter))
+                );
+
+                const hasAppareils = !filters.appareils.length || filters.appareils.some(filter =>
+                    normalize(recipe.appliance) === normalize(filter)
+                );
+
+                const hasUstensiles = !filters.ustensiles.length || filters.ustensiles.every(filter =>
+                    recipe.ustensils?.some(ust => normalize(ust) === normalize(filter))
+                );
+
+                return hasIngredients && hasAppareils && hasUstensiles;
+            });
+        };
+
         let results = recipesData;
 
         if (searchTerm.trim().length >= 3) {
@@ -91,7 +58,7 @@ export const useRecipeFilter = () => {
         }
 
         setFilteredRecipes(results);
-    }, [searchTerm, activeFilters, recipeMatchesSearch, applyTagFilters]);
+    }, [searchTerm, activeFilters]);
 
     const handleSearch = (term) => {
         setSearchTerm(typeof term === 'string' ? term : '');
@@ -149,6 +116,37 @@ export const useRecipeFilter = () => {
             }));
             setSearchTerm('');
         }
+    };
+
+    const ingredientsMap = new Map();
+    const appareilsMap = new Map();
+    const ustensilesMap = new Map();
+
+    filteredRecipes.forEach(recipe => {
+        recipe.ingredients?.forEach(({ ingredient }) => {
+            if (ingredient) {
+                const key = normalize(ingredient);
+                if (!ingredientsMap.has(key)) ingredientsMap.set(key, ingredient.trim());
+            }
+        });
+
+        if (recipe.appliance) {
+            const key = normalize(recipe.appliance);
+            if (!appareilsMap.has(key)) appareilsMap.set(key, recipe.appliance.trim());
+        }
+
+        recipe.ustensils?.forEach(ustensile => {
+            if (ustensile) {
+                const key = normalize(ustensile);
+                if (!ustensilesMap.has(key)) ustensilesMap.set(key, ustensile.trim());
+            }
+        });
+    });
+
+    const availableFilterOptions = {
+        ingredients: Array.from(ingredientsMap.values()).sort(),
+        appareils: Array.from(appareilsMap.values()).sort(),
+        ustensiles: Array.from(ustensilesMap.values()).sort()
     };
 
     return {
